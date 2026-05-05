@@ -1,0 +1,79 @@
+---
+import Layout from "../../../components/Layout.astro";
+import { SPAZI, type Spazio } from "../../../data/spazi";
+
+export function getStaticPaths() {
+  return SPAZI.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const spazio = SPAZI.find((s) => s.slug === slug) as Spazio | undefined;
+
+if (!spazio) {
+  throw new Error(`Spazio non trovato: ${slug}`);
+}
+
+const first = spazio.angles[0];
+---
+<Layout
+  title={spazio.title}
+  path={`/restauro/spazio/${spazio.slug}/`}
+  description={`Villa Houria · ${spazio.title}: prima/dopo, angolazioni e dettagli del restauro.`}
+>
+  <section class="section">
+    <div class="container">
+      <div class="kicker">{spazio.subtitle ?? "Scheda spazio"}</div>
+      <h1 class="sectionTitle" style="font-size:40px;margin-top:8px">{spazio.title}</h1>
+      <p class="muted" style="max-width:75ch">{spazio.rigaGuida}</p>
+
+      <div class="compare" data-compare style="margin-top:18px">
+        <div class="compareTop">
+          <div class="catalogLabel">
+            <span>
+              <b>{spazio.catalog.beforeLabel}</b>{" "}
+              <em>{spazio.catalog.beforeText}</em>
+            </span>
+            <span>
+              <b>{spazio.catalog.afterLabel}</b>{" "}
+              <em>{spazio.catalog.afterText}</em>
+            </span>
+          </div>
+          <div class="compareHelp">Trascina la maniglia per attraversare il tempo.</div>
+        </div>
+
+        <div class="compareStage" data-compare-stage>
+          <img class="after" data-after-img src={first.afterSrc} alt={`${spazio.title} — dopo`} loading="lazy" decoding="async" />
+          <div class="beforeClip" data-before-clip>
+            <img data-before-img src={first.beforeSrc} alt={`${spazio.title} — prima`} loading="lazy" decoding="async" />
+          </div>
+          <div class="compareHandle" data-compare-handle aria-hidden="true">
+            <div class="compareKnob" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="angleBar" aria-label="Angolazioni">
+          <span class="chip" style="margin-right:6px">Angolazioni</span>
+          {spazio.angles.map((a, i) => (
+            <button
+              class="angleBtn"
+              type="button"
+              data-angle={String(i + 1)}
+              data-before={a.beforeSrc}
+              data-after={a.afterSrc}
+              aria-pressed={i === 0 ? "true" : "false"}
+              aria-label={`Angolazione ${i + 1}`}
+            >
+              {a.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="kicker">Dettaglio da notare</div>
+        <p style="margin:10px 0 0" class="muted">{spazio.dettaglioDaNotare}</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+

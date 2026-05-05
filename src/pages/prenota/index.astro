@@ -1,0 +1,83 @@
+---
+import Layout from "../../components/Layout.astro";
+---
+<Layout
+  title="Prenota"
+  path="/prenota/"
+  description="Prenota un weekend a Villa Houria (Sovramonte, Bellunese). Fino a 5 ospiti. Richiesta di disponibilità."
+>
+  <section class="section">
+    <div class="container">
+      <div class="kicker">Prenota</div>
+      <h1 class="sectionTitle" style="font-size:40px;margin-top:8px">Prenota un weekend a Villa Houria</h1>
+      <p class="muted" style="max-width:82ch">
+        Sovramonte, Bellunese — <b>fino a 5 ospiti</b>. Invia una richiesta di disponibilità: rispondiamo rapidamente con conferma e dettagli.
+      </p>
+
+      <div class="cards" style="grid-template-columns:1fr 1fr;margin-top:18px">
+        <div class="card">
+          <h2 class="cardTitle">Richiesta di disponibilità</h2>
+          <p class="cardP">
+            Inserisci le date e gli ospiti. Per l’invio useremo un servizio form esterno (Formspree o simile).
+          </p>
+          <p class="cardP" style="margin-top:10px">
+            <b>Nota:</b> aggiornare l’URL del form in questo file quando lo attivi.
+          </p>
+
+          <form
+            action="https://formspree.io/f/CHANGE_ME"
+            method="POST"
+            style="margin-top:14px;display:grid;gap:10px"
+          >
+            <label class="stack" style="gap:6px">
+              <span class="muted">Arrivo</span>
+              <input name="arrivo" type="date" required style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)" />
+            </label>
+            <label class="stack" style="gap:6px">
+              <span class="muted">Partenza</span>
+              <input name="partenza" type="date" required style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)" />
+            </label>
+            <label class="stack" style="gap:6px">
+              <span class="muted">Ospiti (1–5)</span>
+              <input name="ospiti" type="number" min="1" max="5" required value="2" style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)" />
+            </label>
+            <label class="stack" style="gap:6px">
+              <span class="muted">Nome e cognome</span>
+              <input name="nome" type="text" required placeholder="Nome Cognome" style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)" />
+            </label>
+            <label class="stack" style="gap:6px">
+              <span class="muted">Email</span>
+              <input name="email" type="email" required placeholder="nome@email.it" style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)" />
+            </label>
+            <label class="stack" style="gap:6px">
+              <span class="muted">Telefono</span>
+              <input name="telefono" type="tel" placeholder="+39 ..." style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)" />
+            </label>
+            <label class="stack" style="gap:6px">
+              <span class="muted">Un messaggio (facoltativo)</span>
+              <textarea name="messaggio" rows="4" placeholder="Orario di arrivo, esigenze, domande…" style="padding:12px;border-radius:12px;border:1px solid var(--hairline);background:rgba(255,255,255,.6)"></textarea>
+            </label>
+            <button class="btn primary" type="submit">Invia richiesta di disponibilità</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2 class="cardTitle">Trasparenza (Locazione Turistica)</h2>
+          <p class="cardP" style="margin-top:8px">
+            Villa Houria è una Locazione Turistica gestita in forma privata: autonomia e indipendenza, senza servizi alberghieri.
+          </p>
+          <div class="stack" style="gap:10px;margin-top:12px">
+            <div><b>Incluso</b> <span class="muted">— casa pulita/sanificata, biancheria alla consegna, cucina attrezzata, utenze.</span></div>
+            <div><b>Non previsto</b> <span class="muted">— colazione/pasti, pulizie giornaliere, cambi biancheria durante il soggiorno.</span></div>
+            <div><b>Supporto</b> <span class="muted">— consigli su ristoranti e luoghi da visitare; reperibilità per necessità/emergenze.</span></div>
+          </div>
+          <div class="heroActions" style="margin-top:16px">
+            <a class="btn" href="/vivere-la-villa/">Vivere la Villa</a>
+            <a class="btn" href="/contatti/">Contatti</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+

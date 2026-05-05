@@ -1,0 +1,74 @@
+---
+const {
+  title,
+  description,
+  path = "/",
+  canonical
+} = Astro.props as {
+  title: string;
+  description?: string;
+  path?: string;
+  canonical?: string;
+};
+
+const siteName = "Villa Houria";
+const pageTitle = `${title} · ${siteName}`;
+const desc =
+  description ??
+  "Villa Houria a Sovramonte (Bellunese): memoriale del restauro, prima/dopo, e un weekend per abitarla con rispetto.";
+const url = canonical ?? new URL(path, Astro.site).toString();
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{pageTitle}</title>
+    <link rel="stylesheet" href="/styles/site.css" />
+    <script type="module" src="/scripts/compare.js"></script>
+  </head>
+  <body>
+    <header class="siteHeader">
+      <div class="container">
+        <nav class="nav" aria-label="Principale">
+          <a class="brand" href="/">Villa Houria</a>
+          <div class="navLinks">
+            <a href="/la-villa/" data-active={path.startsWith("/la-villa")}>La Villa</a>
+            <a href="/memoriale/" data-active={path.startsWith("/memoriale")}>Il Memoriale</a>
+            <a href="/restauro/" data-active={path.startsWith("/restauro")}>Il Restauro</a>
+            <a href="/galleria/" data-active={path.startsWith("/galleria")}>Galleria</a>
+            <a href="/vivere-la-villa/" data-active={path.startsWith("/vivere-la-villa")}>Vivere la Villa</a>
+            <a href="/prenota/" data-active={path.startsWith("/prenota")}>Prenota</a>
+            <a href="/contatti/" data-active={path.startsWith("/contatti")}>Contatti</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="stack" style="gap:10px">
+          <div class="muted">
+            Sovramonte (Bellunese) · Locazione Turistica privata · Fino a 5 ospiti
+          </div>
+          <div class="muted">
+            © {new Date().getFullYear()} Villa Houria
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+

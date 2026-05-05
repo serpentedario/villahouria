@@ -1,0 +1,37 @@
+---
+import Layout from "../../../components/Layout.astro";
+import { PIANI, SPAZI, type Piano } from "../../../data/spazi";
+
+export function getStaticPaths() {
+  return PIANI.map((p) => ({ params: { piano: p.key } }));
+}
+
+const { piano } = Astro.params as { piano: Piano };
+const pianoMeta = PIANI.find((p) => p.key === piano);
+const spazi = SPAZI.filter((s) => s.piano === piano);
+---
+<Layout
+  title={pianoMeta?.label ?? "Restauro"}
+  path={`/restauro/${piano}/`}
+  description={`Villa Houria · ${pianoMeta?.label ?? "Restauro"}: schede spazio con confronti prima/dopo.`}
+>
+  <section class="section">
+    <div class="container">
+      <div class="kicker">Restauro</div>
+      <h1 class="sectionTitle" style="font-size:40px;margin-top:8px">
+        {pianoMeta?.label ?? "Restauro"}
+      </h1>
+      <p class="muted">{pianoMeta?.motto}</p>
+
+      <div class="cards" style="margin-top:16px">
+        {spazi.map((s) => (
+          <a class="card" href={`/restauro/spazio/${s.slug}/`} style="text-decoration:none">
+            <h2 class="cardTitle">{s.title}</h2>
+            <p class="cardP">{s.subtitle ?? s.rigaGuida}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+

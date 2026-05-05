@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://villahouria.it/sitemap.xml
+

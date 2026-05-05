@@ -1,0 +1,60 @@
+---
+import Layout from "../components/Layout.astro";
+---
+<Layout
+  title="Home"
+  path="/"
+  description="Villa Houria a Sovramonte (Bellunese): memoriale del restauro, prima/dopo, e un weekend per abitarla con rispetto."
+>
+  <section class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div>
+          <div class="kicker">Sovramonte (Bellunese)</div>
+          <h1 class="heroTitle">Villa Houria</h1>
+          <p class="heroSubtitle">
+            “Una casa rimasta in silenzio per decenni. Poi, stanza per stanza, la luce è tornata.”
+          </p>
+          <div class="heroActions">
+            <a class="btn primary" href="/memoriale/">Entra nel Memoriale</a>
+            <a class="btn" href="/prenota/">Prenota un weekend</a>
+          </div>
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+            <span class="chip">315 m²</span>
+            <span class="chip">13 vani</span>
+            <span class="chip">4 livelli + soffitta</span>
+          </div>
+        </div>
+        <aside class="heroCard" aria-label="Copertina">
+          <div class="heroMedia" role="img" aria-label="Copertina Villa Houria (placeholder)"></div>
+          <div class="heroMeta">
+            <span class="chip">Memoria</span>
+            <span class="chip">Materia</span>
+            <span class="chip">Luce</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="sectionTitle">Due modi di entrare</h2>
+      <div class="cards">
+        <a class="card" href="/memoriale/" style="text-decoration:none">
+          <h3 class="cardTitle">Il Memoriale</h3>
+          <p class="cardP">Prima e dopo. Tracce. Scelte. Materia che cambia senza perdere memoria.</p>
+        </a>
+        <a class="card" href="/restauro/" style="text-decoration:none">
+          <h3 class="cardTitle">Il Restauro</h3>
+          <p class="cardP">Esplora per piano o per spazio: come una piccola collezione, stanza per stanza.</p>
+        </a>
+        <a class="card" href="/vivere-la-villa/" style="text-decoration:none">
+          <h3 class="cardTitle">Vivere la Villa</h3>
+          <p class="cardP">Un weekend per abitarla con rispetto: autonomia piena, ritmi lenti, collina intorno.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+

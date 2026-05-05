@@ -1,0 +1,29 @@
+---
+import Layout from "../../components/Layout.astro";
+import { SPAZI } from "../../data/spazi";
+---
+<Layout
+  title="Galleria"
+  path="/galleria/"
+  description="Galleria di Villa Houria: sfoglia gli spazi come un catalogo."
+>
+  <section class="section">
+    <div class="container">
+      <div class="kicker">Catalogo</div>
+      <h1 class="sectionTitle" style="font-size:40px;margin-top:8px">Galleria</h1>
+      <p class="muted" style="max-width:78ch">
+        Sfoglia come un catalogo: ogni scheda porta al confronto prima/dopo dello spazio.
+      </p>
+
+      <div class="cards" style="margin-top:18px">
+        {SPAZI.map((s) => (
+          <a class="card" href={`/restauro/spazio/${s.slug}/`} style="text-decoration:none">
+            <h2 class="cardTitle">{s.title}</h2>
+            <p class="cardP">{s.subtitle ?? s.rigaGuida}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+

@@ -1,0 +1,60 @@
+---
+import Layout from "../../components/Layout.astro";
+import { PIANI, SPAZI } from "../../data/spazi";
+
+const byPiano = new Map(PIANI.map((p) => [p.key, SPAZI.filter((s) => s.piano === p.key)]));
+---
+<Layout
+  title="Il Restauro"
+  path="/restauro/"
+  description="Il restauro di Villa Houria: esplora per piano o per spazio, con confronti prima/dopo."
+>
+  <section class="section">
+    <div class="container">
+      <div class="kicker">Il Restauro</div>
+      <h1 class="sectionTitle" style="font-size:40px;margin-top:8px">Il Restauro</h1>
+      <p class="muted" style="max-width:75ch">
+        Esplora come una piccola collezione: per piano o per spazio. Ogni scheda conserva una frase-guida,
+        la targhetta “prima/dopo”, e un dettaglio da notare.
+      </p>
+
+      <div class="stack" style="margin-top:18px;gap:26px">
+        <section>
+          <h2 class="sectionTitle">Per Piano</h2>
+          <div class="cards">
+            {PIANI.filter((p) => p.key !== "esterni").map((p) => (
+              <a class="card" href={`/restauro/${p.key}/`} style="text-decoration:none">
+                <h3 class="cardTitle">{p.label}</h3>
+                <p class="cardP">{p.motto}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="sectionTitle">Per Spazio</h2>
+          <div class="cards">
+            {["esterni"].map((key) => {
+              const p = PIANI.find((x) => x.key === key)!;
+              return (
+                <a class="card" href={`/restauro/${p.key}/`} style="text-decoration:none">
+                  <h3 class="cardTitle">{p.label}</h3>
+                  <p class="cardP">{p.motto}</p>
+                </a>
+              );
+            })}
+            <a class="card" href="/galleria/" style="text-decoration:none">
+              <h3 class="cardTitle">Galleria</h3>
+              <p class="cardP">Sfoglia come un catalogo: filtri per piano, spazi e dettagli.</p>
+            </a>
+            <a class="card" href="/prenota/" style="text-decoration:none">
+              <h3 class="cardTitle">Prenota</h3>
+              <p class="cardP">Un weekend a Sovramonte: fino a 5 ospiti, autonomia piena.</p>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</Layout>
+
